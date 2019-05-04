@@ -8,24 +8,31 @@ class HomePage extends StatefulWidget{
 }
 
 class _HomePageState extends State<HomePage> {
-  static const APPBAR_SCROLL_OFFSET = 100;
+  static const APPBAR_SCROLL_OFFSET = 60;
   List _imageUrls = [
     'https://images3.c-ctrip.com/overseas/city/singapore256-256.jpg',
     'https://imgs.qunarzz.com/vs_ceph_vs_tts/a891b14c-5704-43c0-8e14-acbe1c41c3f3.jpg_r_480x320x90_b7d8392c.jpg',
     'https://imgs.qunarzz.com/p/p70/1809/e7/4941057a6aae702.jpg_256x160_9fee6ccb.jpg'
   ];
-  double appBarAlpha = 0;
+  Color _boxColor = Color.fromARGB(0, 255, 255, 255);
+  Color inputBoxColor = Color.fromARGB(255, 255, 255, 255);
 
   _onScroll(offset) {
-    double alpha = offset / APPBAR_SCROLL_OFFSET;
+    int alpha = (offset / APPBAR_SCROLL_OFFSET * 255) ~/ 1;
+    int color = (-0.45 * offset + 255) ~/ 1;
     if(alpha < 0) {
       alpha = 0;
-    } else if (alpha > 1) {
-      alpha = 1;
+    } else if (alpha > 255) {
+      alpha = 255;
     }
     setState(() {
-      appBarAlpha = alpha;
+      _boxColor = Color.fromARGB(alpha, 255, 255, 255);
     });
+    if(offset < APPBAR_SCROLL_OFFSET) {
+      setState(() {
+        inputBoxColor = Color.fromARGB(255, color, color, color);
+      });
+    }
   }
 
   @override
@@ -68,22 +75,81 @@ class _HomePageState extends State<HomePage> {
               )
             )
           ),
-          Opacity(
-            opacity: appBarAlpha,
-            child: Container(
-              height: 80,
-              decoration: BoxDecoration(color: Colors.white),
-              child: Center(
-                child: Padding(
-                  padding: EdgeInsets.only(top: 20),
-                  child: Text('首页'),
-                ),
-              ),
+          Container(
+            alignment: Alignment.bottomCenter,
+            height: 80,
+            padding: EdgeInsets.only(bottom: 8),
+            decoration: BoxDecoration(
+              color: _boxColor,
+              // border: BorderDirectional(bottom: BorderSide(color: Color.fromARGB(255, 225, 225, 225)))
             ),
-          )
+            child: Row(
+              children: <Widget>[
+                Container(
+                  width: 60,
+                  height: 26,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 4),
+                    child: Row(
+                      children: <Widget>[
+                        Text('杭州'),
+                        Icon(
+                          Icons.arrow_drop_down
+                        ),
+                      ],
+                    ),
+                  )
+                ),
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: inputBoxColor,
+                      borderRadius: BorderRadius.all(Radius.circular(15))
+                    ),
+                    height: 26,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8,vertical: 3),
+                      child: Row(
+                        children: <Widget>[
+                          Icon(
+                            Icons.search,
+                            color: Color.fromARGB(255, 92, 182, 236),
+                            size: 18,
+                          ),
+                          Expanded(
+                            child: TextField(
+                              decoration: InputDecoration(
+                                contentPadding: EdgeInsets.symmetric(horizontal: 5),
+                                border: InputBorder.none,
+                                hintText: '杭州攻略',
+                                hintStyle: TextStyle(fontSize: 14)
+                              ),
+                            )
+                          ),
+                          Icon(
+                            Icons.settings_voice,
+                            color: Color.fromARGB(255, 169, 169, 169),
+                            size: 18,
+                          )
+                        ],
+                      ),
+                    )
+                  ),
+                ),
+                Container(
+                  width: 50,
+                  height: 26,
+                  child: Icon(
+                    Icons.comment,
+                    color: Color.fromARGB(255, 88, 88, 88),
+                    size: 20,
+                  ),
+                )
+              ],
+            )
+          ),
         ],
       )
     );
   }
-  
 }
