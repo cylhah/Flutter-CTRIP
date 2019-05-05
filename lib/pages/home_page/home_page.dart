@@ -65,10 +65,72 @@ class _HomePageState extends State<HomePage> {
                       pagination: SwiperPagination(),
                     ),
                   ),
-                  Container(
-                    height: 800,
-                    child: ListTile(
-                      title: Text('data'),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 7,vertical: 2),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 5,horizontal: 4),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: <BoxShadow>[
+                          BoxShadow(color: Color.fromARGB(255, 238, 238, 238), offset: Offset(0, 3))
+                        ]
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Column(
+                            children: <Widget>[
+                              Image.network(
+                                'https://imgs.qunarzz.com/p/p70/1809/e7/4941057a6aae702.jpg_256x160_9fee6ccb.jpg',
+                                width: 32,
+                                height: 32,
+                              ),
+                              Text('攻略-景点', style: TextStyle(fontSize: 10),)
+                            ],
+                          ),
+                          Column(
+                            children: <Widget>[
+                              Image.network(
+                                'https://imgs.qunarzz.com/p/p70/1809/e7/4941057a6aae702.jpg_256x160_9fee6ccb.jpg',
+                                width: 32,
+                                height: 32,
+                              ),
+                              Text('攻略-景点', style: TextStyle(fontSize: 10),)
+                            ],
+                          ),
+                          Column(
+                            children: <Widget>[
+                              Image.network(
+                                'https://imgs.qunarzz.com/p/p70/1809/e7/4941057a6aae702.jpg_256x160_9fee6ccb.jpg',
+                                width: 32,
+                                height: 32,
+                              ),
+                              Text('攻略-景点', style: TextStyle(fontSize: 10),)
+                            ],
+                          ),
+                          Column(
+                            children: <Widget>[
+                              Image.network(
+                                'https://imgs.qunarzz.com/p/p70/1809/e7/4941057a6aae702.jpg_256x160_9fee6ccb.jpg',
+                                width: 32,
+                                height: 32,
+                              ),
+                              Text('攻略-景点', style: TextStyle(fontSize: 10),)
+                            ],
+                          ),
+                          Column(
+                            children: <Widget>[
+                              Image.network(
+                                'https://imgs.qunarzz.com/p/p70/1809/e7/4941057a6aae702.jpg_256x160_9fee6ccb.jpg',
+                                width: 32,
+                                height: 32,
+                              ),
+                              Text('攻略-景点', style: TextStyle(fontSize: 10),)
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   )
                 ],
@@ -88,17 +150,15 @@ class _HomePageState extends State<HomePage> {
                 Container(
                   width: 60,
                   height: 26,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 4),
-                    child: Row(
-                      children: <Widget>[
-                        Text('杭州'),
-                        Icon(
-                          Icons.arrow_drop_down
-                        ),
-                      ],
-                    ),
-                  )
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text('杭州'),
+                      Icon(
+                        Icons.arrow_drop_down
+                      ),
+                    ],
+                  ),
                 ),
                 Expanded(
                   child: Container(

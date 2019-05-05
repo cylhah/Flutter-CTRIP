@@ -1,4 +1,4 @@
-import 'package:demo/pages/home_page.dart';
+import 'package:demo/pages/home_page/home_page.dart';
 import 'package:demo/pages/my_page.dart';
 import 'package:demo/pages/search_page.dart';
 import 'package:demo/pages/travel_page.dart';
