@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 7,vertical: 2),
+                    padding: EdgeInsets.symmetric(horizontal: 7,vertical: 6),
                     child: Container(
                       padding: EdgeInsets.symmetric(vertical: 5,horizontal: 4),
                       decoration: BoxDecoration(
@@ -131,6 +131,317 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 7, vertical: 6),
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+                            gradient: LinearGradient(colors: <Color>[Color.fromARGB(255, 250, 89, 86), Color.fromARGB(255, 251, 125, 82)]),
+                          ),
+                          child: Row(
+                            children: <Widget>[
+                              Expanded(
+                                flex: 3,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: BorderDirectional(end: BorderSide(color: Colors.white), bottom: BorderSide(color: Colors.white)),
+                                  ),
+                                  height: 56,
+                                  alignment: Alignment.centerLeft,
+                                  padding: EdgeInsets.symmetric(horizontal: 5),
+                                  child: Text(
+                                    '机票',
+                                    style: TextStyle(color: Colors.white, fontSize: 12),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: Container(
+                                  decoration: BoxDecoration(border: BorderDirectional(end: BorderSide(color: Colors.white), bottom: BorderSide(color: Colors.white))),
+                                  height: 56,
+                                  alignment: Alignment.center,
+                                  padding: EdgeInsets.symmetric(horizontal: 5),
+                                  child: Text(
+                                    '机票',
+                                    style: TextStyle(color: Colors.white, fontSize: 12),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: Container(
+                                  decoration: BoxDecoration(border: BorderDirectional(end: BorderSide(color: Colors.white), bottom: BorderSide(color: Colors.white))),
+                                  height: 56,
+                                  alignment: Alignment.center,
+                                  padding: EdgeInsets.symmetric(horizontal: 5),
+                                  child: Text(
+                                    '机票',
+                                    style: TextStyle(color: Colors.white, fontSize: 12),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: Container(
+                                  decoration: BoxDecoration(border: BorderDirectional(bottom: BorderSide(color: Colors.white))),
+                                  height: 56,
+                                  alignment: Alignment.center,
+                                  padding: EdgeInsets.symmetric(horizontal: 5),
+                                  child: Text(
+                                    '机票',
+                                    style: TextStyle(color: Colors.white, fontSize: 12),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(colors: <Color>[Color.fromARGB(255, 75, 143, 237), Color.fromARGB(255, 83, 187, 237)])
+                          ),
+                          child: Row(
+                            children: <Widget>[
+                              Expanded(
+                                flex: 3,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: BorderDirectional(end: BorderSide(color: Colors.white), bottom: BorderSide(color: Colors.white)),
+                                    image: DecorationImage(
+                                      image: AssetImage('images/plane.png'),
+                                      fit: BoxFit.cover
+                                    )
+                                  ),
+                                  height: 56,
+                                  alignment: Alignment.centerLeft,
+                                  padding: EdgeInsets.symmetric(horizontal: 5),
+                                  child: Text(
+                                    '机票',
+                                    style: TextStyle(color: Colors.white, fontSize: 12),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: Container(
+                                  decoration: BoxDecoration(border: BorderDirectional(end: BorderSide(color: Colors.white), bottom: BorderSide(color: Colors.white))),
+                                  height: 56,
+                                  alignment: Alignment.center,
+                                  padding: EdgeInsets.symmetric(horizontal: 5),
+                                  child: Text(
+                                    '机票',
+                                    style: TextStyle(color: Colors.white, fontSize: 12),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: Container(
+                                  decoration: BoxDecoration(border: BorderDirectional(end: BorderSide(color: Colors.white), bottom: BorderSide(color: Colors.white))),
+                                  height: 56,
+                                  alignment: Alignment.center,
+                                  padding: EdgeInsets.symmetric(horizontal: 5),
+                                  child: Text(
+                                    '机票',
+                                    style: TextStyle(color: Colors.white, fontSize: 12),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: Container(
+                                  decoration: BoxDecoration(border: BorderDirectional(bottom: BorderSide(color: Colors.white))),
+                                  height: 56,
+                                  alignment: Alignment.center,
+                                  padding: EdgeInsets.symmetric(horizontal: 5),
+                                  child: Text(
+                                    '机票',
+                                    style: TextStyle(color: Colors.white, fontSize: 12),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
+                            gradient: LinearGradient(colors: <Color>[Color.fromARGB(255, 52, 194, 168), Color.fromARGB(255, 107, 212, 88)])
+                          ),
+                          child: Row(
+                            children: <Widget>[
+                              Expanded(
+                                flex: 3,
+                                child: Container(
+                                  decoration: BoxDecoration(border: BorderDirectional(end: BorderSide(color: Colors.white), bottom: BorderSide(color: Colors.white))),
+                                  height: 56,
+                                  alignment: Alignment.centerLeft,
+                                  padding: EdgeInsets.symmetric(horizontal: 5),
+                                  child: Text(
+                                    '机票',
+                                    style: TextStyle(color: Colors.white, fontSize: 12),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: Container(
+                                  decoration: BoxDecoration(border: BorderDirectional(end: BorderSide(color: Colors.white), bottom: BorderSide(color: Colors.white))),
+                                  height: 56,
+                                  alignment: Alignment.center,
+                                  padding: EdgeInsets.symmetric(horizontal: 5),
+                                  child: Text(
+                                    '机票',
+                                    style: TextStyle(color: Colors.white, fontSize: 12),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: Container(
+                                  decoration: BoxDecoration(border: BorderDirectional(end: BorderSide(color: Colors.white), bottom: BorderSide(color: Colors.white))),
+                                  height: 56,
+                                  alignment: Alignment.center,
+                                  padding: EdgeInsets.symmetric(horizontal: 5),
+                                  child: Text(
+                                    '机票',
+                                    style: TextStyle(color: Colors.white, fontSize: 12),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: Container(
+                                  decoration: BoxDecoration(border: BorderDirectional(bottom: BorderSide(color: Colors.white))),
+                                  height: 56,
+                                  alignment: Alignment.center,
+                                  padding: EdgeInsets.symmetric(horizontal: 5),
+                                  child: Text(
+                                    '机票',
+                                    style: TextStyle(color: Colors.white, fontSize: 12),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 7, vertical: 6),
+                    child: Column(
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 13),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: <Widget>[
+                              Column(
+                                children: <Widget>[
+                                  Image.asset('images/type_sight.png', width: 19,),
+                                  Text('自由行', style: TextStyle(fontSize: 10),)
+                                ],
+                              ),
+                              Column(
+                                children: <Widget>[
+                                  Image.asset('images/type_sight.png', width: 19,),
+                                  Text('自由行', style: TextStyle(fontSize: 10),)
+                                ],
+                              ),
+                              Column(
+                                children: <Widget>[
+                                  Image.asset('images/type_sight.png', width: 19,),
+                                  Text('自由行', style: TextStyle(fontSize: 10),)
+                                ],
+                              ),
+                              Column(
+                                children: <Widget>[
+                                  Image.asset('images/type_sight.png', width: 19,),
+                                  Text('自由行', style: TextStyle(fontSize: 10),)
+                                ],
+                              ),
+                              Column(
+                                children: <Widget>[
+                                  Image.asset('images/type_sight.png', width: 19,),
+                                  Text('自由行', style: TextStyle(fontSize: 10),)
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 13),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: <Widget>[
+                              Column(
+                                children: <Widget>[
+                                  Image.asset('images/type_sight.png', width: 19,),
+                                  Text('自由行', style: TextStyle(fontSize: 10),)
+                                ],
+                              ),
+                              Column(
+                                children: <Widget>[
+                                  Image.asset('images/type_sight.png', width: 19,),
+                                  Text('自由行', style: TextStyle(fontSize: 10),)
+                                ],
+                              ),
+                              Column(
+                                children: <Widget>[
+                                  Image.asset('images/type_sight.png', width: 19,),
+                                  Text('自由行', style: TextStyle(fontSize: 10),)
+                                ],
+                              ),
+                              Column(
+                                children: <Widget>[
+                                  Image.asset('images/type_sight.png', width: 19,),
+                                  Text('自由行', style: TextStyle(fontSize: 10),)
+                                ],
+                              ),
+                              Column(
+                                children: <Widget>[
+                                  Image.asset('images/type_sight.png', width: 19,),
+                                  Text('自由行', style: TextStyle(fontSize: 10),)
+                                ],
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(6, 0, 6, 7),
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8))
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text('超值特惠', style: TextStyle(fontSize: 15),),
+                              Container(
+                                child: Row(
+                                  children: <Widget>[
+                                    Text('更多', style: TextStyle(fontSize: 10, color: Color.fromARGB(255, 164, 164, 164)),),
+                                    Icon(Icons.arrow_right, size: 18, color: Color.fromARGB(255, 164, 164, 164),)
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
                     ),
                   )
                 ],
