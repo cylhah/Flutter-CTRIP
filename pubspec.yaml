@@ -12,7 +12,9 @@ dependencies:
 
   cupertino_icons: ^0.1.2
   flutter_swiper: ^1.1.6
-  http: ^0.12.0+2
+  dio: ^2.1.3
+  flutter_webview_plugin: ^0.3.5
+  cached_network_image: ^0.8.0
   shared_preferences: ^0.5.2
 
 dev_dependencies:
@@ -36,5 +38,22 @@ flutter:
     - images/type_channelgs.png
     - images/type_channeltrain.png
     - images/type_cruise.png
-    - images/plane.png
-    - images/lighthouse.png
+    - images/ln_food.png
+    - images/ln_guide.png
+    - images/ln_oneday.png
+    - images/ln_ticket.png
+    - images/ln_weekend.png
+    - images/grid-nav-items-flight.png
+    - images/grid-nav-items-hotel.png
+    - images/grid-nav-items-travel.png
+    - images/sub_nav_credit.png
+    - images/sub_nav_exchange.png
+    - images/sub_nav_freetravel.png
+    - images/sub_nav_guide.png
+    - images/sub_nav_lipin.png
+    - images/sub_nav_more.png
+    - images/sub_nav_play.png
+    - images/sub_nav_shopping.png
+    - images/sub_nav_visa.png
+    - images/sub_nav_wifi.png
+    - images/bed.png
