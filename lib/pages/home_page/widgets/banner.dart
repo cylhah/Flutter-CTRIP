@@ -7,7 +7,7 @@ import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 class MyBanner extends StatelessWidget {
   final List<CommonModel> bannerList;
 
-  const MyBanner({
+  MyBanner({
     Key key,
     @required this.bannerList,
   }) : super(key: key);

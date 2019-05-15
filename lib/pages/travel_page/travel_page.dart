@@ -10,10 +10,8 @@ class _TravelPageState extends State<TravelPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text('travel'),
-      )
+    return Container(
+      child: Text('data'),
     );
   }
   

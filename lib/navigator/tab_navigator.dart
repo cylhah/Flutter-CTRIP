@@ -1,7 +1,7 @@
 import 'package:demo/pages/home_page/home_page.dart';
-import 'package:demo/pages/my_page.dart';
-import 'package:demo/pages/search_page.dart';
-import 'package:demo/pages/travel_page.dart';
+import 'package:demo/pages/my_page/my_page.dart';
+import 'package:demo/pages/search_page/search_page.dart';
+import 'package:demo/pages/travel_page/travel_page.dart';
 import 'package:flutter/material.dart';
 
 class TabNavigator extends StatefulWidget{
@@ -22,6 +22,7 @@ class _TabNavigatorState extends State<TabNavigator> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
+        physics: NeverScrollableScrollPhysics(),
         controller: _controller,
         children: <Widget>[
           HomePage(),
