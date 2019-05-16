@@ -1,4 +1,6 @@
 //搜索模型
+import 'package:flutter/material.dart';
+
 class SearchModel {
   String keyword;
   final List<SearchItem> data;
@@ -21,6 +23,7 @@ class SearchItem {
   final String zonename;
   final String districtname;
   final String url;
+  Color background = Colors.white;
 
   SearchItem(
       {this.word,

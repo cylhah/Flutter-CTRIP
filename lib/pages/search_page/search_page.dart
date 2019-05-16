@@ -151,19 +151,30 @@ class _SearchPageState extends State<SearchPage> {
     String text = item.word;
     text = text.length >= 23 ? text.substring(0, 20) + '...' : text;
     TextStyle normalStyle = TextStyle(color: Colors.black);
-    TextStyle highlightStyle = TextStyle(color: Color.fromARGB(255, 140, 210, 239));
+    TextStyle highlightStyle =
+        TextStyle(color: Color.fromARGB(255, 69, 182, 229));
     List<Text> textList = [];
-    List<TextSpan> spanList = [];
-    // text.
-    for(int i=0;i<text.length;i++) {
-      if(text[i] == _searchModel.keyword) {
-        textList.add(Text(text[i], style: highlightStyle));
-      } else {
-        textList.add(Text(text[i], style: normalStyle));
+    List<String> wordList = text.split(_searchModel.keyword);
+    for (int i = 0; i < wordList.length; i++) {
+      if ((i % 2) == 1) {
+        textList.add(Text(_searchModel.keyword, style: highlightStyle));
+      }
+      String val = wordList[i];
+      if (val != '' && val.length > 0) {
+        textList.add(Text(val, style: normalStyle));
       }
     }
     return GestureDetector(
+        onTapDown: (_) {
+          setState(() {
+            _searchModel.data[position].background =
+                Color.fromARGB(255, 225, 225, 225);
+          });
+        },
         onTapUp: (_) {
+          setState(() {
+            _searchModel.data[position].background = Colors.white;
+          });
           Navigator.push(context,
               MaterialPageRoute(builder: (BuildContext context) {
             return WebviewScaffold(
@@ -176,19 +187,20 @@ class _SearchPageState extends State<SearchPage> {
           }));
         },
         child: Container(
+          decoration:
+              BoxDecoration(color: _searchModel.data[position].background),
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Icon(
                 Icons.search,
-                color: Color.fromARGB(255, 140, 210, 239),
+                color: Color.fromARGB(255, 69, 182, 229),
               ),
               Expanded(
-                child: Row(
-                  children: textList,
-                )
-              ),
+                  child: Row(
+                children: textList,
+              )),
               Icon(Icons.keyboard_arrow_right,
                   color: Color.fromARGB(255, 162, 162, 162))
             ],
