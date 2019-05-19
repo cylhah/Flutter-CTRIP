@@ -1,5 +1,8 @@
+import 'package:demo/dao/travel_dao.dart';
 import 'package:demo/dao/travel_tab_dao.dart';
+import 'package:demo/model/travel_model.dart';
 import 'package:demo/model/travel_tab_model.dart';
+import 'package:demo/pages/travel_page/widgets/travel_detail.dart';
 import 'package:flutter/material.dart';
 
 class TravelPage extends StatefulWidget {
@@ -12,11 +15,13 @@ class _TravelPageState extends State<TravelPage>
   TabController _controller;
   List<TravelTab> tabs = [];
   TravelTabModel travelTabModel;
+  TravelModel travelModel;
 
   @override
   void initState() {
     super.initState();
-    _loadData();
+    _loadTabData();
+    _loadDetailData();
   }
 
   @override
@@ -25,7 +30,7 @@ class _TravelPageState extends State<TravelPage>
     _controller.dispose();
   }
 
-  void _loadData() async {
+  void _loadTabData() async {
     _controller = TabController(length: 0, vsync: this);
     try {
       TravelTabModel model = await TravelTabDao.fetch();
@@ -40,6 +45,15 @@ class _TravelPageState extends State<TravelPage>
     }
   }
 
+  void _loadDetailData() async {
+    try {
+      travelModel = await TravelDao.fetch({}, 'tourphoto_global1', 1, 1, 10);
+      print(travelModel.resultList[0]);
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,32 +61,38 @@ class _TravelPageState extends State<TravelPage>
         body: SafeArea(
           child: Column(
             children: <Widget>[
-              Container(
-                child: TabBar(
-                    controller: _controller,
-                    isScrollable: true,
-                    labelColor: Colors.black,
-                    labelPadding:
-                        EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    indicator: UnderlineTabIndicator(
-                        borderSide:
-                            BorderSide(color: Color(0xff1fcfbb), width: 3),
-                        insets: EdgeInsets.only(bottom: 10)),
-                    tabs: tabs.map<Tab>((TravelTab tab) {
-                      return Tab(
-                        text: tab.labelName,
-                      );
-                    }).toList()),
-              ),
+              _tabBar(),
               Expanded(
                 child: TabBarView(
                     controller: _controller,
                     children: tabs.map((TravelTab tab) {
-                      return Text(tab.labelName);
+                      return TravelDetail(
+                        params: travelTabModel.params,
+                        groupChannelCode: tab.groupChannelCode,
+                        type: tab.type,
+                      );
                     }).toList()),
               )
             ],
           ),
         ));
+  }
+
+  Widget _tabBar() {
+    return Container(
+      child: TabBar(
+          controller: _controller,
+          isScrollable: true,
+          labelColor: Colors.black,
+          labelPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          indicator: UnderlineTabIndicator(
+              borderSide: BorderSide(color: Color(0xff1fcfbb), width: 3),
+              insets: EdgeInsets.only(bottom: 10)),
+          tabs: tabs.map<Tab>((TravelTab tab) {
+            return Tab(
+              text: tab.labelName,
+            );
+          }).toList()),
+    );
   }
 }
