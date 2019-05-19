@@ -1,5 +1,6 @@
 import 'package:demo/dao/search_dao.dart';
 import 'package:demo/model/search_model.dart';
+import 'package:demo/pages/speak_page/speak_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
@@ -73,6 +74,7 @@ class _SearchPageState extends State<SearchPage> {
                               size: 22,
                             ), () {
                           if (_searchBarIcon.codePoint == 0xe029) {
+                            _jumpToSpeakPage();
                           } else {
                             _textEditingController.clear();
                             _onInputChanged('');
@@ -96,6 +98,12 @@ class _SearchPageState extends State<SearchPage> {
                 ))
           ],
         ));
+  }
+
+  _jumpToSpeakPage() {
+    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+      return SpeakPage();
+    }));
   }
 
   Widget _searchResultList() {
