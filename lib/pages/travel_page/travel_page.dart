@@ -4,6 +4,7 @@ import 'package:demo/model/travel_model.dart';
 import 'package:demo/model/travel_tab_model.dart';
 import 'package:demo/pages/travel_page/widgets/travel_detail.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class TravelPage extends StatefulWidget {
   @override
@@ -56,26 +57,36 @@ class _TravelPageState extends State<TravelPage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Color.fromARGB(255, 244, 248, 251),
-        body: SafeArea(
-          child: Column(
-            children: <Widget>[
-              _tabBar(),
-              Expanded(
-                child: TabBarView(
-                    controller: _controller,
-                    children: tabs.map((TravelTab tab) {
-                      return TravelDetail(
-                        params: travelTabModel.params,
-                        groupChannelCode: tab.groupChannelCode,
-                        type: tab.type,
-                      );
-                    }).toList()),
-              )
-            ],
-          ),
-        ));
+    return AnnotatedRegion(
+      value: SystemUiOverlayStyle(
+        systemNavigationBarColor: Color(0xff000000),
+        systemNavigationBarDividerColor: null,
+        statusBarColor: Color.fromARGB(255, 244, 248, 251),
+        systemNavigationBarIconBrightness: Brightness.light,
+        statusBarIconBrightness: Brightness.dark,
+        statusBarBrightness: Brightness.dark,
+      ),
+      child: Scaffold(
+          backgroundColor: Color.fromARGB(255, 244, 248, 251),
+          body: SafeArea(
+            child: Column(
+              children: <Widget>[
+                _tabBar(),
+                Expanded(
+                  child: TabBarView(
+                      controller: _controller,
+                      children: tabs.map((TravelTab tab) {
+                        return TravelDetail(
+                          params: travelTabModel.params,
+                          groupChannelCode: tab.groupChannelCode,
+                          type: tab.type,
+                        );
+                      }).toList()),
+                )
+              ],
+            ),
+          )),
+    );
   }
 
   Widget _tabBar() {

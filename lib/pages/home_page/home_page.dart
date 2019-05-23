@@ -7,6 +7,7 @@ import 'package:demo/pages/home_page/widgets/grid_nav.dart';
 import 'package:demo/pages/home_page/widgets/local_nav.dart';
 import 'package:demo/pages/home_page/widgets/sub_nav.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -18,16 +19,27 @@ class _HomePageState extends State<HomePage> {
   List<CommonModel> bannerList = [];
   Color _boxColor = Color.fromARGB(0, 255, 255, 255);
   Color inputBoxColor = Color.fromARGB(255, 255, 255, 255);
+  SystemUiOverlayStyle _currentStyle = SystemUiOverlayStyle(
+    systemNavigationBarColor: Color(0xff000000),
+    systemNavigationBarDividerColor: null,
+    statusBarColor: Color.fromARGB(0, 255, 255, 255),
+    systemNavigationBarIconBrightness: Brightness.light,
+    statusBarIconBrightness: Brightness.light,
+    statusBarBrightness: Brightness.dark,
+  );
 
   @override
   void initState() {
-    _handleRefresh();
     super.initState();
+    _handleRefresh();
   }
 
   _onScroll(offset) {
     int alpha = (offset / APPBAR_SCROLL_OFFSET * 255) ~/ 1;
     int color = (-0.45 * offset + 255) ~/ 1;
+    Brightness statusBarIconBrightness = offset > APPBAR_SCROLL_OFFSET * 0.8
+        ? Brightness.dark
+        : Brightness.light;
     if (alpha < 0) {
       alpha = 0;
     } else if (alpha > 255) {
@@ -35,6 +47,14 @@ class _HomePageState extends State<HomePage> {
     }
     setState(() {
       _boxColor = Color.fromARGB(alpha, 255, 255, 255);
+      _currentStyle = SystemUiOverlayStyle(
+        systemNavigationBarColor: Color(0xff000000),
+        systemNavigationBarDividerColor: null,
+        statusBarColor: Color.fromARGB(alpha, 255, 255, 255),
+        systemNavigationBarIconBrightness: Brightness.light,
+        statusBarIconBrightness: statusBarIconBrightness,
+        statusBarBrightness: Brightness.dark,
+      );
     });
     if (offset < APPBAR_SCROLL_OFFSET) {
       setState(() {
@@ -45,43 +65,46 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Color.fromARGB(255, 250, 250, 250),
-        body: Stack(
-          children: <Widget>[
-            MediaQuery.removePadding(
-                removeTop: true,
-                context: context,
-                child: NotificationListener(
-                    onNotification: (notification) {
-                      if (notification is ScrollUpdateNotification &&
-                          notification.depth == 0) {
-                        _onScroll(notification.metrics.pixels);
-                      }
-                    },
-                    child: ListView(
-                      children: <Widget>[
-                        MyBanner(bannerList: bannerList),
-                        Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 7, vertical: 6),
-                            child: LocalNav()),
-                        Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 7, vertical: 6),
-                            child: GridNav()),
-                        Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 7, vertical: 6),
-                            child: SubNav()),
-                        Padding(
-                            padding: EdgeInsets.fromLTRB(6, 0, 6, 7),
-                            child: BarginPrice())
-                      ],
-                    ))),
-            _searchBox()
-          ],
-        ));
+    return AnnotatedRegion(
+      value: _currentStyle,
+      child: Scaffold(
+          backgroundColor: Color.fromARGB(255, 250, 250, 250),
+          body: Stack(
+            children: <Widget>[
+              MediaQuery.removePadding(
+                  removeTop: true,
+                  context: context,
+                  child: NotificationListener(
+                      onNotification: (notification) {
+                        if (notification is ScrollUpdateNotification &&
+                            notification.depth == 0) {
+                          _onScroll(notification.metrics.pixels);
+                        }
+                      },
+                      child: ListView(
+                        children: <Widget>[
+                          MyBanner(bannerList: bannerList),
+                          Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 7, vertical: 6),
+                              child: LocalNav()),
+                          Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 7, vertical: 6),
+                              child: GridNav()),
+                          Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 7, vertical: 6),
+                              child: SubNav()),
+                          Padding(
+                              padding: EdgeInsets.fromLTRB(6, 0, 6, 7),
+                              child: BarginPrice())
+                        ],
+                      ))),
+              _searchBox()
+            ],
+          )),
+    );
   }
 
   Future<Null> _handleRefresh() async {

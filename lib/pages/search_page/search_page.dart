@@ -2,6 +2,7 @@ import 'package:demo/dao/search_dao.dart';
 import 'package:demo/model/search_model.dart';
 import 'package:demo/pages/speak_page/speak_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 class SearchPage extends StatefulWidget {
@@ -16,19 +17,29 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.white,
-        body: SafeArea(
-          top: true,
-          child: Column(
-            children: <Widget>[
-              _searchBar(),
-              Expanded(
-                child: _searchResultList(),
-              )
-            ],
-          ),
-        ));
+    return AnnotatedRegion(
+      value: SystemUiOverlayStyle(
+        systemNavigationBarColor: Color(0xff000000),
+        systemNavigationBarDividerColor: null,
+        statusBarColor: Color.fromARGB(255, 0, 0, 0),
+        systemNavigationBarIconBrightness: Brightness.light,
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.dark,
+      ),
+      child: Scaffold(
+          backgroundColor: Colors.white,
+          body: SafeArea(
+            top: true,
+            child: Column(
+              children: <Widget>[
+                _searchBar(),
+                Expanded(
+                  child: _searchResultList(),
+                )
+              ],
+            ),
+          )),
+    );
   }
 
   Widget _searchBar() {
@@ -118,6 +129,10 @@ class _SearchPageState extends State<SearchPage> {
     _changeIcon(text);
     if (text != '') {
       _sendSearch(text);
+    } else {
+      setState(() {
+        _searchModel = null;
+      });
     }
   }
 
