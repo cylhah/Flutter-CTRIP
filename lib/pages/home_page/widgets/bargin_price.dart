@@ -374,19 +374,19 @@ class BarginPrice extends StatelessWidget {
                     Text('特价酒店', style: TextStyle(fontSize: 14)),
                     Padding(
                       padding: EdgeInsets.only(top: 3),
-                      child: Text.rich(
-                        TextSpan(
+                      child: Text.rich(TextSpan(
                           text: '限时',
                           style: TextStyle(
-                            fontSize: 11,
-                            color: Color.fromARGB(255, 247, 17, 17),
-                            fontWeight: FontWeight.w600
-                          ),
-                          children: <TextSpan> [
-                            TextSpan(text: '抢购', style: TextStyle(color: Colors.black, fontWeight: FontWeight.normal))
-                          ]
-                        )
-                      ),
+                              fontSize: 11,
+                              color: Color.fromARGB(255, 247, 17, 17),
+                              fontWeight: FontWeight.w600),
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: '抢购',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.normal))
+                          ])),
                     )
                   ],
                 ),
@@ -398,9 +398,8 @@ class BarginPrice extends StatelessWidget {
                 height: 70,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage('images/bed.png'), fit: BoxFit.cover),
-                    borderRadius:
-                        BorderRadius.only(bottomLeft: Radius.circular(8))),
+                        image: AssetImage('images/bed.png'),
+                        fit: BoxFit.cover)),
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -408,18 +407,23 @@ class BarginPrice extends StatelessWidget {
                     Text('特价旅游', style: TextStyle(fontSize: 14)),
                     Padding(
                       padding: EdgeInsets.only(top: 3),
-                      child: Text.rich(
-                        TextSpan(
+                      child: Text.rich(TextSpan(
                           text: '超值',
                           style: TextStyle(
                             fontSize: 11,
                           ),
-                          children: <TextSpan> [
-                            TextSpan(text: '3折', style: TextStyle(color: Color.fromARGB(255, 247, 17, 17), fontWeight: FontWeight.w600)),
-                            TextSpan(text: '起', style: TextStyle(color: Colors.black, fontWeight: FontWeight.normal))
-                          ]
-                        )
-                      ),
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: '3折',
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 247, 17, 17),
+                                    fontWeight: FontWeight.w600)),
+                            TextSpan(
+                                text: '起',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.normal))
+                          ])),
                     )
                   ],
                 ),
@@ -441,17 +445,18 @@ class BarginPrice extends StatelessWidget {
                     Text('私家团', style: TextStyle(fontSize: 14)),
                     Padding(
                       padding: EdgeInsets.only(top: 3),
-                      child: Text.rich(
-                        TextSpan(
+                      child: Text.rich(TextSpan(
                           text: '最高',
                           style: TextStyle(
                             fontSize: 11,
                           ),
-                          children: <TextSpan> [
-                            TextSpan(text: '减1000', style: TextStyle(color: Color.fromARGB(255, 247, 17, 17), fontWeight: FontWeight.w600)),
-                          ]
-                        )
-                      ),
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: '减1000',
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 247, 17, 17),
+                                    fontWeight: FontWeight.w600)),
+                          ])),
                     )
                   ],
                 ),

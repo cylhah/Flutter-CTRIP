@@ -1,6 +1,9 @@
+import 'package:demo/model/user_model.dart';
+import 'package:demo/pages/my_page/widgets/arc_clipper.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 const APPBAR_SCROLL_OFFSET = 100;
 
@@ -20,6 +23,7 @@ class _MyPageState extends State<MyPage> {
     statusBarIconBrightness: Brightness.light,
     statusBarBrightness: Brightness.dark,
   );
+  UserModel userModel = UserModel();
 
   _onScroll(offset) {
     int alpha = (offset / APPBAR_SCROLL_OFFSET * 255) ~/ 1;
@@ -44,6 +48,27 @@ class _MyPageState extends State<MyPage> {
         statusBarIconBrightness: statusBarIconBrightness,
         statusBarBrightness: Brightness.dark,
       );
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getUserInfo();
+  }
+
+  void _getUserInfo() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    int userCreditScore = (prefs.getInt('userCreditScore') ?? 522) + 1;
+    await prefs.setString('userName', 'yumlay');
+    await prefs.setString('userHeadUrl',
+        'https://images.nowcoder.com/images/20180510/9356835_1525914844075_7C2C60506876716CCF0E706DB13D4511@0e_100w_100h_0c_1i_1o_90Q_1x');
+    await prefs.setInt('userCreditScore', userCreditScore);
+    setState(() {
+      userModel = UserModel(
+          userName: prefs.getString('userName'),
+          userHeadUrl: prefs.getString('userHeadUrl'),
+          userCreditScore: prefs.getInt('userCreditScore'));
     });
   }
 
@@ -92,160 +117,164 @@ class _MyPageState extends State<MyPage> {
   }
 
   Widget _item1() {
+    String defaultHeadUrl = 'https://www.dpfile.com/ugc/user/anonymous.png';
     return Container(
       margin: EdgeInsets.only(bottom: 10),
       height: 300,
       child: Stack(
         children: <Widget>[
-          Container(
-            padding: EdgeInsets.fromLTRB(30, 70, 20, 0),
-            height: 260,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(30),
-                    bottomRight: Radius.circular(30)),
-                gradient: LinearGradient(colors: <Color>[
-                  Color.fromARGB(255, 31, 128, 255),
-                  Color.fromARGB(255, 36, 177, 255)
-                ])),
+          ClipPath(
+            clipper: ArcClipper(),
             child: Container(
-              child: Column(
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Container(
-                        width: 66,
-                        height: 66,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                                image: CachedNetworkImageProvider(
-                                    'https://images.nowcoder.com/images/20180510/9356835_1525914844075_7C2C60506876716CCF0E706DB13D4511@0e_100w_100h_0c_1i_1o_90Q_1x'))),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(left: 10),
-                        height: 66,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              '尊敬的会员',
-                              style:
-                                  TextStyle(fontSize: 22, color: Colors.white),
-                            ),
-                            Row(
-                              children: <Widget>[
-                                Container(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 8, vertical: 5),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
-                                      color: Color.fromARGB(153, 0, 123, 240)),
-                                  child: Text(
-                                    '领会员福利',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 10),
-                                  ),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.only(left: 10),
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 8, vertical: 5),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
-                                      color: Color.fromARGB(153, 0, 123, 240)),
-                                  child: Text(
-                                    '程信分538',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 10),
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 15),
-                    padding: EdgeInsets.symmetric(horizontal: 5),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              padding: EdgeInsets.fromLTRB(30, 70, 20, 0),
+              height: 260,
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(colors: <Color>[
+                Color.fromARGB(255, 31, 128, 255),
+                Color.fromARGB(255, 36, 177, 255)
+              ])),
+              child: Container(
+                child: Column(
+                  children: <Widget>[
+                    Row(
                       children: <Widget>[
-                        Column(
-                          children: <Widget>[
-                            Padding(
-                              padding: EdgeInsets.only(bottom: 3),
-                              child: Icon(
-                                Icons.contact_mail,
-                                color: Colors.white,
-                                size: 26,
-                              ),
-                            ),
-                            Text(
-                              '常用信息',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 12),
-                            )
-                          ],
+                        Container(
+                          width: 66,
+                          height: 66,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                  image: CachedNetworkImageProvider(
+                                      userModel.userHeadUrl ??
+                                          defaultHeadUrl))),
                         ),
-                        Column(
-                          children: <Widget>[
-                            Padding(
-                              padding: EdgeInsets.only(bottom: 3),
-                              child: Icon(
-                                Icons.favorite_border,
-                                color: Colors.white,
-                                size: 26,
+                        Container(
+                          margin: EdgeInsets.only(left: 10),
+                          height: 66,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                '尊敬的会员',
+                                style: TextStyle(
+                                    fontSize: 22, color: Colors.white),
                               ),
-                            ),
-                            Text(
-                              '我的收藏',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 12),
-                            )
-                          ],
-                        ),
-                        Column(
-                          children: <Widget>[
-                            Padding(
-                              padding: EdgeInsets.only(bottom: 3),
-                              child: Icon(
-                                Icons.history,
-                                color: Colors.white,
-                                size: 26,
-                              ),
-                            ),
-                            Text(
-                              '浏览历史',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 12),
-                            )
-                          ],
-                        ),
-                        Column(
-                          children: <Widget>[
-                            Padding(
-                              padding: EdgeInsets.only(bottom: 3),
-                              child: Icon(
-                                Icons.camera_alt,
-                                color: Colors.white,
-                                size: 26,
-                              ),
-                            ),
-                            Text(
-                              '我的旅拍',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 12),
-                            )
-                          ],
-                        ),
+                              Row(
+                                children: <Widget>[
+                                  Container(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 8, vertical: 5),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color:
+                                            Color.fromARGB(153, 0, 123, 240)),
+                                    child: Text(
+                                      '领会员福利',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 10),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(left: 10),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 8, vertical: 5),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color:
+                                            Color.fromARGB(153, 0, 123, 240)),
+                                    child: Text(
+                                      '程信分${userModel.userCreditScore}',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 10),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                        )
                       ],
                     ),
-                  )
-                ],
+                    Container(
+                      margin: EdgeInsets.only(top: 15),
+                      padding: EdgeInsets.symmetric(horizontal: 5),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Column(
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(bottom: 3),
+                                child: Icon(
+                                  Icons.contact_mail,
+                                  color: Colors.white,
+                                  size: 26,
+                                ),
+                              ),
+                              Text(
+                                '常用信息',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 12),
+                              )
+                            ],
+                          ),
+                          Column(
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(bottom: 3),
+                                child: Icon(
+                                  Icons.favorite_border,
+                                  color: Colors.white,
+                                  size: 26,
+                                ),
+                              ),
+                              Text(
+                                '我的收藏',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 12),
+                              )
+                            ],
+                          ),
+                          Column(
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(bottom: 3),
+                                child: Icon(
+                                  Icons.history,
+                                  color: Colors.white,
+                                  size: 26,
+                                ),
+                              ),
+                              Text(
+                                '浏览历史',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 12),
+                              )
+                            ],
+                          ),
+                          Column(
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(bottom: 3),
+                                child: Icon(
+                                  Icons.camera_alt,
+                                  color: Colors.white,
+                                  size: 26,
+                                ),
+                              ),
+                              Text(
+                                '我的旅拍',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 12),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
