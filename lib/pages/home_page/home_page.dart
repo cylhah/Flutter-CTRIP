@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
   Color _boxColor = Color.fromARGB(0, 255, 255, 255);
   Color inputBoxColor = Color.fromARGB(255, 255, 255, 255);
   SystemUiOverlayStyle _currentStyle = SystemUiOverlayStyle(
-    systemNavigationBarColor: Color(0xff000000),
+    systemNavigationBarColor: Color(0xffffffff),
     systemNavigationBarDividerColor: null,
     statusBarColor: Color.fromARGB(0, 255, 255, 255),
     systemNavigationBarIconBrightness: Brightness.light,
@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _boxColor = Color.fromARGB(alpha, 255, 255, 255);
       _currentStyle = SystemUiOverlayStyle(
-        systemNavigationBarColor: Color(0xff000000),
+        systemNavigationBarColor: Color(0xffffffff),
         systemNavigationBarDividerColor: null,
         statusBarColor: Color.fromARGB(alpha, 255, 255, 255),
         systemNavigationBarIconBrightness: Brightness.light,

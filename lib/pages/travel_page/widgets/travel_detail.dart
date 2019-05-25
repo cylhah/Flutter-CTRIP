@@ -1,8 +1,8 @@
 import 'package:demo/dao/travel_dao.dart';
 import 'package:demo/model/travel_model.dart';
+import 'package:demo/widgets/my_webview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 const PAGE_SIZE = 10;
 
@@ -100,11 +100,9 @@ class _TravelDetailState extends State<TravelDetail> {
         if (item.article.urls != null && item.article.urls.length > 0) {
           Navigator.push(context,
               MaterialPageRoute(builder: (BuildContext context) {
-            return WebviewScaffold(
+            return MyWebview(
               url: item.article.urls[0].h5Url,
-              appBar: AppBar(
-                title: Text('详情'),
-              ),
+              title: '携程旅拍',
             );
           }));
         }
@@ -118,7 +116,11 @@ class _TravelDetailState extends State<TravelDetail> {
           children: <Widget>[
             Stack(
               children: <Widget>[
-                Image.network(item.article?.images[0]?.dynamicUrl),
+                FadeInImage.assetNetwork(
+                  placeholder: 'images/loading_logo.png',
+                  fit: BoxFit.fill,
+                  image: item.article?.images[0]?.dynamicUrl,
+                ),
                 Positioned(
                   bottom: 5,
                   left: 5,

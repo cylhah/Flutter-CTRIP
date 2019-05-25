@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:demo/model/common_model.dart';
+import 'package:demo/widgets/my_webview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 class MyBanner extends StatelessWidget {
   final List<CommonModel> bannerList;
@@ -30,13 +30,7 @@ class MyBanner extends StatelessWidget {
         onTap: (index) {
           Navigator.push(context,
             MaterialPageRoute(builder: (BuildContext context) {
-              return WebviewScaffold(
-                url: bannerList[index].url,
-                hidden: true,
-                appBar: AppBar(
-                  title: Text(bannerList[index].title ?? ''),
-                ),
-              );
+              return MyWebview(url: bannerList[index].url, title: '详情');
             })
           );
         },

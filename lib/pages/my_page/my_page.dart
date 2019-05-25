@@ -1,5 +1,6 @@
 import 'package:demo/model/user_model.dart';
 import 'package:demo/pages/my_page/widgets/arc_clipper.dart';
+import 'package:demo/pages/scan_page/scan_page.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
@@ -16,7 +17,7 @@ class _MyPageState extends State<MyPage> {
   Color barFontColor = Colors.white;
   Color barBgColor = Color.fromARGB(0, 255, 255, 255);
   SystemUiOverlayStyle _currentStyle = SystemUiOverlayStyle(
-    systemNavigationBarColor: Color(0xff000000),
+    systemNavigationBarColor: Color(0xffffffff),
     systemNavigationBarDividerColor: null,
     statusBarColor: Color.fromARGB(0, 255, 255, 255),
     systemNavigationBarIconBrightness: Brightness.light,
@@ -41,7 +42,7 @@ class _MyPageState extends State<MyPage> {
       barBgColor = Color.fromARGB(alpha, 255, 255, 255);
       barFontColor = fontColor;
       _currentStyle = SystemUiOverlayStyle(
-        systemNavigationBarColor: Color(0xff000000),
+        systemNavigationBarColor: Color(0xffffffff),
         systemNavigationBarDividerColor: null,
         statusBarColor: Color.fromARGB(alpha, 255, 255, 255),
         systemNavigationBarIconBrightness: Brightness.light,
@@ -59,11 +60,11 @@ class _MyPageState extends State<MyPage> {
 
   void _getUserInfo() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    int userCreditScore = (prefs.getInt('userCreditScore') ?? 522) + 1;
-    await prefs.setString('userName', 'yumlay');
-    await prefs.setString('userHeadUrl',
-        'https://images.nowcoder.com/images/20180510/9356835_1525914844075_7C2C60506876716CCF0E706DB13D4511@0e_100w_100h_0c_1i_1o_90Q_1x');
-    await prefs.setInt('userCreditScore', userCreditScore);
+    // int userCreditScore = (prefs.getInt('userCreditScore') ?? 522) + 1;
+    // await prefs.setString('userName', 'yumlay');
+    // await prefs.setString('userHeadUrl',
+    //     'https://images.nowcoder.com/images/20180510/9356835_1525914844075_7C2C60506876716CCF0E706DB13D4511@0e_100w_100h_0c_1i_1o_90Q_1x');
+    // await prefs.setInt('userCreditScore', userCreditScore);
     setState(() {
       userModel = UserModel(
           userName: prefs.getString('userName'),
@@ -92,10 +93,10 @@ class _MyPageState extends State<MyPage> {
                 },
                 child: ListView(
                   children: <Widget>[
-                    _item1(),
+                    _myInfo(),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: _item2(),
+                      child: _realNameAuthentication(),
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
@@ -116,8 +117,13 @@ class _MyPageState extends State<MyPage> {
     );
   }
 
-  Widget _item1() {
-    String defaultHeadUrl = 'https://www.dpfile.com/ugc/user/anonymous.png';
+  Widget _myInfo() {
+    BoxDecoration headBoxDecoration = userModel.userHeadUrl == null
+        ? BoxDecoration(shape: BoxShape.circle)
+        : BoxDecoration(
+            shape: BoxShape.circle,
+            image: DecorationImage(
+                image: CachedNetworkImageProvider(userModel.userHeadUrl)));
     return Container(
       margin: EdgeInsets.only(bottom: 10),
       height: 300,
@@ -141,12 +147,7 @@ class _MyPageState extends State<MyPage> {
                         Container(
                           width: 66,
                           height: 66,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                  image: CachedNetworkImageProvider(
-                                      userModel.userHeadUrl ??
-                                          defaultHeadUrl))),
+                          decoration: headBoxDecoration,
                         ),
                         Container(
                           margin: EdgeInsets.only(left: 10),
@@ -368,7 +369,7 @@ class _MyPageState extends State<MyPage> {
     );
   }
 
-  Widget _item2() {
+  Widget _realNameAuthentication() {
     return Container(
       margin: EdgeInsets.only(bottom: 15),
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 14),
@@ -896,7 +897,15 @@ class _MyPageState extends State<MyPage> {
                       Icons.settings,
                       color: barFontColor,
                     ),
-                    Icon(Icons.crop_free, color: barFontColor),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (BuildContext context) {
+                          return ScanPage();
+                        }));
+                      },
+                      child: Icon(Icons.crop_free, color: barFontColor),
+                    ),
                     Icon(Icons.sentiment_satisfied, color: barFontColor)
                   ],
                 ),

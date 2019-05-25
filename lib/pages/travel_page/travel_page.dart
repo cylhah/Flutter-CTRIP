@@ -59,7 +59,7 @@ class _TravelPageState extends State<TravelPage>
   Widget build(BuildContext context) {
     return AnnotatedRegion(
       value: SystemUiOverlayStyle(
-        systemNavigationBarColor: Color(0xff000000),
+        systemNavigationBarColor: Color(0xffffffff),
         systemNavigationBarDividerColor: null,
         statusBarColor: Color.fromARGB(255, 244, 248, 251),
         systemNavigationBarIconBrightness: Brightness.light,

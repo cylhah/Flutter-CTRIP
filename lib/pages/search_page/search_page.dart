@@ -1,9 +1,9 @@
 import 'package:demo/dao/search_dao.dart';
 import 'package:demo/model/search_model.dart';
 import 'package:demo/pages/speak_page/speak_page.dart';
+import 'package:demo/widgets/my_webview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -19,7 +19,7 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return AnnotatedRegion(
       value: SystemUiOverlayStyle(
-        systemNavigationBarColor: Color(0xff000000),
+        systemNavigationBarColor: Color(0xffffffff),
         systemNavigationBarDividerColor: null,
         statusBarColor: Color.fromARGB(255, 0, 0, 0),
         systemNavigationBarIconBrightness: Brightness.light,
@@ -200,13 +200,7 @@ class _SearchPageState extends State<SearchPage> {
           });
           Navigator.push(context,
               MaterialPageRoute(builder: (BuildContext context) {
-            return WebviewScaffold(
-              url: item.url,
-              hidden: true,
-              appBar: AppBar(
-                title: Text(item.word ?? '详情'),
-              ),
-            );
+            return MyWebview(url: item.url, title: item.word,);
           }));
         },
         child: Container(
