@@ -66,9 +66,11 @@ class _MyWebviewState extends State<MyWebview> {
             ),
           ),
           Container(
+            width: 260,
             child: Text(
               widget.title,
               style: TextStyle(fontSize: 17),
+              overflow: TextOverflow.ellipsis,
             ),
           ),
           Container(width: 34),

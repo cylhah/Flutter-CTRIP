@@ -2,10 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class ScanPage extends StatefulWidget {
-  final String url;
-  final String title;
-  ScanPage({Key key, this.url, this.title}) : super(key: key);
-
   @override
   _ScanPageState createState() => _ScanPageState();
 }
@@ -22,16 +18,13 @@ class _ScanPageState extends State<ScanPage> {
 
   @override
   Widget build(BuildContext context) {
-    return AnnotatedRegion(
-        value: defaultUi,
-        child: Scaffold(
-            body: SafeArea(
-          top: true,
-          child: Column(
-            children: <Widget>[
-              Text('data')
-            ],
-          ),
-        )));
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Scan'),
+      ),
+      body: AndroidView(
+        viewType: 'scanView',
+      )
+    );
   }
 }

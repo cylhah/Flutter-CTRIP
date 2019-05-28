@@ -5,9 +5,30 @@ class SpeakPage extends StatefulWidget {
   _SpeakPageState createState() => _SpeakPageState();
 }
 
-class _SpeakPageState extends State<SpeakPage> {
+class _SpeakPageState extends State<SpeakPage> with TickerProviderStateMixin {
   Color _micIconColor = Color.fromARGB(255, 31, 143, 229);
   String _speakTip = '长按说话';
+  AnimationController controller;
+  Animation<double> animation;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 1000));
+    animation = Tween(begin: 1.0, end: 3.5).animate(controller);
+    animation.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        controller.repeat();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,31 +113,55 @@ class _SpeakPageState extends State<SpeakPage> {
                   width: 26,
                 ),
                 GestureDetector(
-                  onTapUp: (_) {
-                    setState(() {
-                      _micIconColor = Color.fromARGB(255, 31, 143, 229);
-                      _speakTip = '长按说话';
-                    });
-                  },
-                  onTapDown: (_) {
-                    setState(() {
-                      _micIconColor = Color.fromARGB(255, 15, 127, 165);
-                      _speakTip = '松开完成';
-                    });
-                  },
-                  child: Container(
-                    width: 60,
-                    height: 60,
-                    decoration: BoxDecoration(
-                        color: _micIconColor,
-                        borderRadius: BorderRadius.circular(60 / 2)),
-                    child: Icon(
-                      Icons.mic,
-                      color: Colors.white,
-                      size: 40,
-                    ),
-                  ),
-                ),
+                    onTapUp: (_) {
+                      controller.reset();
+                      controller.stop();
+                      setState(() {
+                        _micIconColor = Color.fromARGB(255, 31, 143, 229);
+                        _speakTip = '长按说话';
+                      });
+                    },
+                    onTapDown: (_) {
+                      controller.forward();
+                      setState(() {
+                        _micIconColor = Color.fromARGB(255, 15, 127, 165);
+                        _speakTip = '松开完成';
+                      });
+                    },
+                    onTapCancel: () {
+                      controller.reset();
+                      controller.stop();
+                      setState(() {
+                        _micIconColor = Color.fromARGB(255, 31, 143, 229);
+                        _speakTip = '长按说话';
+                      });
+                    },
+                    child: Stack(
+                      children: <Widget>[
+                        ScaleTransition(
+                          scale: animation,
+                          child: Container(
+                            width: 60,
+                            height: 60,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                    color: Color.fromARGB(255, 220, 220, 220))),
+                          ),
+                        ),
+                        Container(
+                          width: 60,
+                          height: 60,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle, color: _micIconColor),
+                          child: Icon(
+                            Icons.mic,
+                            color: Colors.white,
+                            size: 40,
+                          ),
+                        ),
+                      ],
+                    )),
                 GestureDetector(
                   onTap: () {
                     Navigator.pop(context);
