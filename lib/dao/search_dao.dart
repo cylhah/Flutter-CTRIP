@@ -10,7 +10,6 @@ class SearchDao {
   static Future<SearchModel> fetch(String keyword) async {
     final response = await Dio().get(SEARCH_URL + keyword);
     if (response.statusCode == 200) {
-      //只有当输入的内容与服务端返回的内容一致时才渲染
       SearchModel model = SearchModel.fromJson(response.data);
       model.keyword = keyword;
       return model;

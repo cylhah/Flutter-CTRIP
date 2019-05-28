@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 class BarginPrice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[_titleBar(), _middle(), _bottom()],
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(8),
+      child: Column(
+        children: <Widget>[_titleBar(), _middle(), _bottom()],
+      ),
     );
   }
 
   Widget _titleBar() {
     return Container(
+      color: Colors.white,
       padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(8), topRight: Radius.circular(8))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -363,10 +363,9 @@ class BarginPrice extends StatelessWidget {
               child: Container(
                 height: 70,
                 decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('images/bed.png'), fit: BoxFit.cover),
-                    borderRadius:
-                        BorderRadius.only(bottomLeft: Radius.circular(8))),
+                  image: DecorationImage(
+                      image: AssetImage('images/bed.png'), fit: BoxFit.cover),
+                ),
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -434,10 +433,9 @@ class BarginPrice extends StatelessWidget {
               child: Container(
                 height: 70,
                 decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('images/bed.png'), fit: BoxFit.cover),
-                    borderRadius:
-                        BorderRadius.only(bottomRight: Radius.circular(8))),
+                  image: DecorationImage(
+                      image: AssetImage('images/bed.png'), fit: BoxFit.cover),
+                ),
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

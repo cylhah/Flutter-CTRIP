@@ -60,11 +60,11 @@ class _MyPageState extends State<MyPage> {
 
   void _getUserInfo() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    // int userCreditScore = (prefs.getInt('userCreditScore') ?? 522) + 1;
-    // await prefs.setString('userName', 'yumlay');
-    // await prefs.setString('userHeadUrl',
-    //     'https://images.nowcoder.com/images/20180510/9356835_1525914844075_7C2C60506876716CCF0E706DB13D4511@0e_100w_100h_0c_1i_1o_90Q_1x');
-    // await prefs.setInt('userCreditScore', userCreditScore);
+    int userCreditScore = (prefs.getInt('userCreditScore') ?? 522) + 1;
+    await prefs.setString('userName', 'yumlay');
+    await prefs.setString('userHeadUrl',
+        'https://images.nowcoder.com/images/20180510/9356835_1525914844075_7C2C60506876716CCF0E706DB13D4511@0e_100w_100h_0c_1i_1o_90Q_1x');
+    await prefs.setInt('userCreditScore', userCreditScore);
     setState(() {
       userModel = UserModel(
           userName: prefs.getString('userName'),
@@ -410,6 +410,8 @@ class _MyPageState extends State<MyPage> {
     return Container(
       margin: EdgeInsets.only(bottom: 15),
       child: PhysicalModel(
+        shadowColor: Color.fromARGB(255, 238, 238, 238),
+        elevation: 4,
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
         child: Column(
@@ -590,9 +592,13 @@ class _MyPageState extends State<MyPage> {
   }
 
   Widget _cards() {
+    Color iconColor = Color.fromARGB(255, 94, 105, 120);
+    Color textColor = Color.fromARGB(255, 102, 102, 102);
     return Container(
       height: 220,
       child: PhysicalModel(
+          shadowColor: Color.fromARGB(255, 238, 238, 238),
+          elevation: 4,
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
           child: Padding(
@@ -610,7 +616,7 @@ class _MyPageState extends State<MyPage> {
                           Icon(
                             Icons.dns,
                             size: 24,
-                            color: Color.fromARGB(255, 140, 140, 140),
+                            color: iconColor,
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 8),
@@ -618,7 +624,7 @@ class _MyPageState extends State<MyPage> {
                               '会员权益码',
                               style: TextStyle(
                                   fontSize: 12,
-                                  color: Color.fromARGB(255, 140, 140, 140)),
+                                  color: textColor),
                             ),
                           )
                         ],
@@ -631,7 +637,7 @@ class _MyPageState extends State<MyPage> {
                           Icon(
                             Icons.view_day,
                             size: 24,
-                            color: Color.fromARGB(255, 140, 140, 140),
+                            color: iconColor,
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 8),
@@ -639,7 +645,7 @@ class _MyPageState extends State<MyPage> {
                               '银联付款码',
                               style: TextStyle(
                                   fontSize: 12,
-                                  color: Color.fromARGB(255, 140, 140, 140)),
+                                  color: textColor),
                             ),
                           )
                         ],
@@ -652,7 +658,7 @@ class _MyPageState extends State<MyPage> {
                           Icon(
                             Icons.local_airport,
                             size: 24,
-                            color: Color.fromARGB(255, 140, 140, 140),
+                            color: iconColor,
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 8),
@@ -660,7 +666,7 @@ class _MyPageState extends State<MyPage> {
                               '航班助手',
                               style: TextStyle(
                                   fontSize: 12,
-                                  color: Color.fromARGB(255, 140, 140, 140)),
+                                  color: textColor),
                             ),
                           )
                         ],
@@ -673,7 +679,7 @@ class _MyPageState extends State<MyPage> {
                           Icon(
                             Icons.library_books,
                             size: 24,
-                            color: Color.fromARGB(255, 140, 140, 140),
+                            color: iconColor,
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 8),
@@ -681,7 +687,7 @@ class _MyPageState extends State<MyPage> {
                               '出行清单',
                               style: TextStyle(
                                   fontSize: 12,
-                                  color: Color.fromARGB(255, 140, 140, 140)),
+                                  color: textColor),
                             ),
                           )
                         ],
@@ -699,7 +705,7 @@ class _MyPageState extends State<MyPage> {
                           Icon(
                             Icons.security,
                             size: 24,
-                            color: Color.fromARGB(255, 140, 140, 140),
+                            color: iconColor,
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 8),
@@ -707,7 +713,7 @@ class _MyPageState extends State<MyPage> {
                               '我的保险',
                               style: TextStyle(
                                   fontSize: 12,
-                                  color: Color.fromARGB(255, 140, 140, 140)),
+                                  color: textColor),
                             ),
                           )
                         ],
@@ -720,7 +726,7 @@ class _MyPageState extends State<MyPage> {
                           Icon(
                             Icons.store_mall_directory,
                             size: 24,
-                            color: Color.fromARGB(255, 140, 140, 140),
+                            color: iconColor,
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 8),
@@ -728,7 +734,7 @@ class _MyPageState extends State<MyPage> {
                               '携程门店',
                               style: TextStyle(
                                   fontSize: 12,
-                                  color: Color.fromARGB(255, 140, 140, 140)),
+                                  color: textColor),
                             ),
                           )
                         ],
@@ -741,7 +747,7 @@ class _MyPageState extends State<MyPage> {
                           Icon(
                             Icons.event_note,
                             size: 24,
-                            color: Color.fromARGB(255, 140, 140, 140),
+                            color: iconColor,
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 8),
@@ -749,7 +755,7 @@ class _MyPageState extends State<MyPage> {
                               '电子发票',
                               style: TextStyle(
                                   fontSize: 12,
-                                  color: Color.fromARGB(255, 140, 140, 140)),
+                                  color: textColor),
                             ),
                           )
                         ],
@@ -762,7 +768,7 @@ class _MyPageState extends State<MyPage> {
                           Icon(
                             Icons.public,
                             size: 24,
-                            color: Color.fromARGB(255, 140, 140, 140),
+                            color: iconColor,
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 8),
@@ -770,7 +776,7 @@ class _MyPageState extends State<MyPage> {
                               '一生旅行',
                               style: TextStyle(
                                   fontSize: 12,
-                                  color: Color.fromARGB(255, 140, 140, 140)),
+                                  color: textColor),
                             ),
                           )
                         ],
@@ -788,7 +794,7 @@ class _MyPageState extends State<MyPage> {
                           Icon(
                             Icons.chat,
                             size: 24,
-                            color: Color.fromARGB(255, 140, 140, 140),
+                            color: iconColor,
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 8),
@@ -796,7 +802,7 @@ class _MyPageState extends State<MyPage> {
                               '我的社区',
                               style: TextStyle(
                                   fontSize: 12,
-                                  color: Color.fromARGB(255, 140, 140, 140)),
+                                  color: textColor),
                             ),
                           )
                         ],
@@ -809,7 +815,7 @@ class _MyPageState extends State<MyPage> {
                           Icon(
                             Icons.mic,
                             size: 24,
-                            color: Color.fromARGB(255, 140, 140, 140),
+                            color: iconColor,
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 8),
@@ -817,7 +823,7 @@ class _MyPageState extends State<MyPage> {
                               '离线讲解',
                               style: TextStyle(
                                   fontSize: 12,
-                                  color: Color.fromARGB(255, 140, 140, 140)),
+                                  color: textColor),
                             ),
                           )
                         ],
@@ -830,7 +836,7 @@ class _MyPageState extends State<MyPage> {
                           Icon(
                             Icons.border_color,
                             size: 24,
-                            color: Color.fromARGB(255, 140, 140, 140),
+                            color: iconColor,
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 8),
@@ -838,7 +844,7 @@ class _MyPageState extends State<MyPage> {
                               '用户调研',
                               style: TextStyle(
                                   fontSize: 12,
-                                  color: Color.fromARGB(255, 140, 140, 140)),
+                                  color: textColor),
                             ),
                           )
                         ],
@@ -851,7 +857,7 @@ class _MyPageState extends State<MyPage> {
                           Icon(
                             Icons.more,
                             size: 24,
-                            color: Color.fromARGB(255, 140, 140, 140),
+                            color: iconColor,
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 8),
@@ -859,7 +865,7 @@ class _MyPageState extends State<MyPage> {
                               '更多',
                               style: TextStyle(
                                   fontSize: 12,
-                                  color: Color.fromARGB(255, 140, 140, 140)),
+                                  color: textColor),
                             ),
                           )
                         ],

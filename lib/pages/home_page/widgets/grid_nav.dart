@@ -18,30 +18,31 @@ class GridNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: _gridNavItems(context));
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10),
+      child: Column(children: _gridNavItems(context)),
+    );
   }
 
   List<Widget> _gridNavItems(BuildContext context) {
     List<Widget> items = [];
-    items.add(_gridNavItem(context, gridNavList.sublist(0, 4), 'start', [Color.fromARGB(255, 250, 89, 86), Color.fromARGB(255, 250, 155, 77)]));
-    items.add(_gridNavItem(context, gridNavList.sublist(4, 8), 'mid', [Color.fromARGB(255, 75,143,237), Color.fromARGB(255, 75,143,237)]));
-    items.add(_gridNavItem(context, gridNavList.sublist(8, 12), 'end', [Color.fromARGB(255, 52,194,170), Color.fromARGB(255, 108,213,87)]));
+    items.add(_gridNavItem(context, gridNavList.sublist(0, 4),
+        [Color.fromARGB(255, 250, 89, 86), Color.fromARGB(255, 250, 155, 77)]));
+    items.add(_gridNavItem(context, gridNavList.sublist(4, 8), [
+      Color.fromARGB(255, 75, 143, 237),
+      Color.fromARGB(255, 75, 143, 237)
+    ]));
+    items.add(_gridNavItem(context, gridNavList.sublist(8, 12), [
+      Color.fromARGB(255, 52, 194, 170),
+      Color.fromARGB(255, 108, 213, 87)
+    ]));
     return items;
   }
 
-  Widget _gridNavItem(BuildContext context, List<_GridNavModel> itemList, String localtion, List<Color> gradient) {
-    BorderRadius itemBorderRadius;
-    if (localtion == 'start') {
-      itemBorderRadius = BorderRadius.only(
-          topLeft: Radius.circular(10), topRight: Radius.circular(10));
-    }
-    if (localtion == 'end') {
-      itemBorderRadius = BorderRadius.only(
-          bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10));
-    }
+  Widget _gridNavItem(BuildContext context, List<_GridNavModel> itemList,
+      List<Color> gradient) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: itemBorderRadius,
         gradient: LinearGradient(colors: gradient),
       ),
       child: Row(
@@ -124,6 +125,5 @@ class _GridNavModel {
   final String title;
   final String url;
 
-  _GridNavModel(
-      {this.background, this.title, this.url});
+  _GridNavModel({this.background, this.title, this.url});
 }

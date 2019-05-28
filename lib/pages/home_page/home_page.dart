@@ -19,6 +19,7 @@ class _HomePageState extends State<HomePage> {
   List<CommonModel> bannerList = [];
   Color _boxColor = Color.fromARGB(0, 255, 255, 255);
   Color inputBoxColor = Color.fromARGB(255, 255, 255, 255);
+  Color boxFontColor = Colors.white;
   SystemUiOverlayStyle _currentStyle = SystemUiOverlayStyle(
     systemNavigationBarColor: Color(0xffffffff),
     systemNavigationBarDividerColor: null,
@@ -46,7 +47,12 @@ class _HomePageState extends State<HomePage> {
       alpha = 255;
     }
     setState(() {
+      boxFontColor =
+          offset > APPBAR_SCROLL_OFFSET * 0.8 ? Colors.black : Colors.white;
       _boxColor = Color.fromARGB(alpha, 255, 255, 255);
+      inputBoxColor = offset < APPBAR_SCROLL_OFFSET
+          ? Color.fromARGB(255, color, color, color)
+          : Color.fromARGB(255, 228, 228, 228);
       _currentStyle = SystemUiOverlayStyle(
         systemNavigationBarColor: Color(0xffffffff),
         systemNavigationBarDividerColor: null,
@@ -56,11 +62,6 @@ class _HomePageState extends State<HomePage> {
         statusBarBrightness: Brightness.dark,
       );
     });
-    if (offset < APPBAR_SCROLL_OFFSET) {
-      setState(() {
-        inputBoxColor = Color.fromARGB(255, color, color, color);
-      });
-    }
   }
 
   @override
@@ -137,8 +138,14 @@ class _HomePageState extends State<HomePage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text('杭州'),
-                      Icon(Icons.keyboard_arrow_down),
+                      Text(
+                        '杭州',
+                        style: TextStyle(color: boxFontColor),
+                      ),
+                      Icon(
+                        Icons.keyboard_arrow_down,
+                        color: boxFontColor,
+                      ),
                     ],
                   ),
                 ),
@@ -182,7 +189,7 @@ class _HomePageState extends State<HomePage> {
                   height: 26,
                   child: Icon(
                     Icons.comment,
-                    color: Color.fromARGB(255, 200, 200, 200),
+                    color: boxFontColor,
                     size: 20,
                   ),
                 )

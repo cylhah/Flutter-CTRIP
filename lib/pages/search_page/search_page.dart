@@ -16,6 +16,12 @@ class _SearchPageState extends State<SearchPage> {
   TextEditingController _textEditingController = TextEditingController();
 
   @override
+  void dispose() {
+    super.dispose();
+    _textEditingController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AnnotatedRegion(
       value: SystemUiOverlayStyle(
