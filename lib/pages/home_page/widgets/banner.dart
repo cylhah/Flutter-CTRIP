@@ -15,7 +15,7 @@ class MyBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 160,
+      height: 220,
       child: Swiper(
         itemCount: bannerList.length,
         autoplay: true,

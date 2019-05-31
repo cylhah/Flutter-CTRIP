@@ -84,21 +84,35 @@ class _HomePageState extends State<HomePage> {
                       },
                       child: ListView(
                         children: <Widget>[
-                          MyBanner(bannerList: bannerList),
+                          Container(
+                            height: 230,
+                            child: Stack(
+                              children: <Widget>[
+                                ClipPath(
+                                  clipper: _ArcClipper(),
+                                  child: MyBanner(
+                                    bannerList: bannerList,
+                                  ),
+                                ),
+                                Positioned(
+                                  bottom: 5,
+                                  left: 9,
+                                  right: 9,
+                                  child: LocalNav(),
+                                )
+                              ],
+                            ),
+                          ),
                           Padding(
                               padding: EdgeInsets.symmetric(
-                                  horizontal: 7, vertical: 6),
-                              child: LocalNav()),
-                          Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 7, vertical: 6),
+                                  horizontal: 9, vertical: 6),
                               child: GridNav()),
                           Padding(
                               padding: EdgeInsets.symmetric(
-                                  horizontal: 7, vertical: 6),
+                                  horizontal: 9, vertical: 6),
                               child: SubNav()),
                           Padding(
-                              padding: EdgeInsets.fromLTRB(6, 0, 6, 7),
+                              padding: EdgeInsets.fromLTRB(9, 0, 9, 7),
                               child: BarginPrice())
                         ],
                       ))),
@@ -196,4 +210,28 @@ class _HomePageState extends State<HomePage> {
               ],
             )));
   }
+}
+
+class _ArcClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    Path path = Path();
+    path.lineTo(0.0, size.height - 30);
+    Offset firstControlPoint = Offset(size.width / 4, size.height - 10);
+    Offset firstPoint = Offset(size.width / 2, size.height);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+        firstPoint.dx, firstPoint.dy);
+
+    Offset secondControlPoint = Offset(size.width * 3 / 4, size.height - 10);
+    Offset secondPoint = Offset(size.width, size.height - 30);
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+        secondPoint.dx, secondPoint.dy);
+
+    path.lineTo(size.width, 0.0);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }

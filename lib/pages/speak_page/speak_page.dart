@@ -1,3 +1,5 @@
+import 'package:demo/pages/search_page/search_page.dart';
+import 'package:demo/plugin/asr_manager.dart';
 import 'package:flutter/material.dart';
 
 class SpeakPage extends StatefulWidget {
@@ -7,6 +9,7 @@ class SpeakPage extends StatefulWidget {
 
 class _SpeakPageState extends State<SpeakPage> with TickerProviderStateMixin {
   Color _micIconColor = Color.fromARGB(255, 31, 143, 229);
+  String _speakTitle = '你可以这样说';
   String _speakTip = '长按说话';
   AnimationController controller;
   Animation<double> animation;
@@ -26,8 +29,50 @@ class _SpeakPageState extends State<SpeakPage> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    controller.dispose();
     super.dispose();
+    controller.dispose();
+  }
+
+  void _speakStart() {
+    controller.forward();
+    setState(() {
+      _micIconColor = Color.fromARGB(255, 15, 127, 165);
+      _speakTip = '松开完成';
+      _speakTitle = '正在听您说 ^_^...';
+    });
+    AsrManager.start().then((text) {
+      if (text != null && text.length > 0) {
+        if (text == 'No recognition result match') {
+          setState(() {
+            _speakTitle = '你好像并没有说话';
+          });
+        } else {
+          // Navigator.pop(context);
+          setState(() {
+            _speakTitle = '你可以这样说';
+          });
+          Navigator.push(context,
+              MaterialPageRoute(builder: (BuildContext context) {
+            return SearchPage(
+              keyword: text,
+            );
+          }));
+        }
+      }
+    }).catchError((e) {
+      print('--------' + e.toString());
+    });
+  }
+
+  //结束录音
+  void _speakStop() {
+    controller.reset();
+    controller.stop();
+    setState(() {
+      _micIconColor = Color.fromARGB(255, 31, 143, 229);
+      _speakTip = '长按说话';
+    });
+    AsrManager.stop();
   }
 
   @override
@@ -42,7 +87,7 @@ class _SpeakPageState extends State<SpeakPage> with TickerProviderStateMixin {
                 margin: EdgeInsets.only(top: 50),
                 child: Column(
                   children: <Widget>[
-                    Text('你可以这样说', style: TextStyle(fontSize: 18)),
+                    Text(_speakTitle, style: TextStyle(fontSize: 18)),
                     _examples()
                   ],
                 )),
@@ -71,21 +116,21 @@ class _SpeakPageState extends State<SpeakPage> with TickerProviderStateMixin {
           Padding(
             padding: EdgeInsets.only(bottom: 5),
             child: Text(
-              '故宫门票',
+              '上海周边游',
               style: TextStyle(color: Color.fromARGB(225, 100, 100, 100)),
             ),
           ),
           Padding(
             padding: EdgeInsets.only(bottom: 5),
             child: Text(
-              '故宫门票',
+              '迪士尼乐园',
               style: TextStyle(color: Color.fromARGB(225, 100, 100, 100)),
             ),
           ),
           Padding(
             padding: EdgeInsets.only(bottom: 5),
             child: Text(
-              '故宫门票',
+              '迪拜度假',
               style: TextStyle(color: Color.fromARGB(225, 100, 100, 100)),
             ),
           ),
@@ -114,27 +159,13 @@ class _SpeakPageState extends State<SpeakPage> with TickerProviderStateMixin {
                 ),
                 GestureDetector(
                     onTapUp: (_) {
-                      controller.reset();
-                      controller.stop();
-                      setState(() {
-                        _micIconColor = Color.fromARGB(255, 31, 143, 229);
-                        _speakTip = '长按说话';
-                      });
+                      _speakStop();
                     },
                     onTapDown: (_) {
-                      controller.forward();
-                      setState(() {
-                        _micIconColor = Color.fromARGB(255, 15, 127, 165);
-                        _speakTip = '松开完成';
-                      });
+                      _speakStart();
                     },
                     onTapCancel: () {
-                      controller.reset();
-                      controller.stop();
-                      setState(() {
-                        _micIconColor = Color.fromARGB(255, 31, 143, 229);
-                        _speakTip = '长按说话';
-                      });
+                      _speakStop();
                     },
                     child: Stack(
                       children: <Widget>[

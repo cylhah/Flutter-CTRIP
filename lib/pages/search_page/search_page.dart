@@ -6,6 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class SearchPage extends StatefulWidget {
+  final String keyword;
+
+  SearchPage({Key key, this.keyword}) : super(key: key);
+
   @override
   _SearchPageState createState() => _SearchPageState();
 }
@@ -14,6 +18,15 @@ class _SearchPageState extends State<SearchPage> {
   SearchModel _searchModel;
   IconData _searchBarIcon = Icons.mic;
   TextEditingController _textEditingController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.keyword != null) {
+      _textEditingController.text = widget.keyword;
+      _onInputChanged(widget.keyword);
+    }
+  }
 
   @override
   void dispose() {
@@ -200,13 +213,21 @@ class _SearchPageState extends State<SearchPage> {
                 Color.fromARGB(255, 225, 225, 225);
           });
         },
+        onTapCancel: () {
+          setState(() {
+            _searchModel.data[position].background = Colors.white;
+          });
+        },
         onTapUp: (_) {
           setState(() {
             _searchModel.data[position].background = Colors.white;
           });
           Navigator.push(context,
               MaterialPageRoute(builder: (BuildContext context) {
-            return MyWebview(url: item.url, title: item.word,);
+            return MyWebview(
+              url: item.url,
+              title: item.word,
+            );
           }));
         },
         child: Container(

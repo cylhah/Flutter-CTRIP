@@ -1,4 +1,4 @@
-include ':app', ':asr_plugin', ':baidu_speech'
+include ':app', ':asr_plugin', ':baidu_speech', ':asr'
 
 def flutterProjectRoot = rootProject.projectDir.parentFile.toPath()
 

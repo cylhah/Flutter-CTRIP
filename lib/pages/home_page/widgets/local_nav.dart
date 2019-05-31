@@ -12,10 +12,10 @@ class LocalNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.symmetric(vertical: 5, horizontal: 4),
+        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
         decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: BorderRadius.circular(8),
             boxShadow: <BoxShadow>[
               BoxShadow(
                   color: Color.fromARGB(255, 238, 238, 238),
