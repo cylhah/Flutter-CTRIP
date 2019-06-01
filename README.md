@@ -17,7 +17,7 @@
 
 ## APP效果图
 
-![Flutter_Trip](https://raw.githubusercontent.com/wkl007/flutter_trip/master/screenshot/flutter_trip_preview.png)
+![Flutter_Trip](https://raw.githubusercontent.com/cylhah/Flutter-CTRIP/master/preview/preview.jpg)
 
 ## 功能与特性
 
