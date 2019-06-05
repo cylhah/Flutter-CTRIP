@@ -3,7 +3,6 @@ package com.example.asr;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.asr.RecogEventAdapter;
 import com.baidu.speech.EventManager;
 import com.baidu.speech.EventManagerFactory;
 import com.baidu.speech.asr.SpeechConstant;

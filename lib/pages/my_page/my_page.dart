@@ -105,7 +105,11 @@ class _MyPageState extends State<MyPage> {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: _cards(),
-                    )
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: _todo(),
+                    ),
                   ],
                 ),
               ),
@@ -622,9 +626,7 @@ class _MyPageState extends State<MyPage> {
                             padding: EdgeInsets.only(top: 8),
                             child: Text(
                               '会员权益码',
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  color: textColor),
+                              style: TextStyle(fontSize: 12, color: textColor),
                             ),
                           )
                         ],
@@ -643,9 +645,7 @@ class _MyPageState extends State<MyPage> {
                             padding: EdgeInsets.only(top: 8),
                             child: Text(
                               '银联付款码',
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  color: textColor),
+                              style: TextStyle(fontSize: 12, color: textColor),
                             ),
                           )
                         ],
@@ -664,9 +664,7 @@ class _MyPageState extends State<MyPage> {
                             padding: EdgeInsets.only(top: 8),
                             child: Text(
                               '航班助手',
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  color: textColor),
+                              style: TextStyle(fontSize: 12, color: textColor),
                             ),
                           )
                         ],
@@ -685,9 +683,7 @@ class _MyPageState extends State<MyPage> {
                             padding: EdgeInsets.only(top: 8),
                             child: Text(
                               '出行清单',
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  color: textColor),
+                              style: TextStyle(fontSize: 12, color: textColor),
                             ),
                           )
                         ],
@@ -711,9 +707,7 @@ class _MyPageState extends State<MyPage> {
                             padding: EdgeInsets.only(top: 8),
                             child: Text(
                               '我的保险',
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  color: textColor),
+                              style: TextStyle(fontSize: 12, color: textColor),
                             ),
                           )
                         ],
@@ -732,9 +726,7 @@ class _MyPageState extends State<MyPage> {
                             padding: EdgeInsets.only(top: 8),
                             child: Text(
                               '携程门店',
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  color: textColor),
+                              style: TextStyle(fontSize: 12, color: textColor),
                             ),
                           )
                         ],
@@ -753,9 +745,7 @@ class _MyPageState extends State<MyPage> {
                             padding: EdgeInsets.only(top: 8),
                             child: Text(
                               '电子发票',
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  color: textColor),
+                              style: TextStyle(fontSize: 12, color: textColor),
                             ),
                           )
                         ],
@@ -774,9 +764,7 @@ class _MyPageState extends State<MyPage> {
                             padding: EdgeInsets.only(top: 8),
                             child: Text(
                               '一生旅行',
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  color: textColor),
+                              style: TextStyle(fontSize: 12, color: textColor),
                             ),
                           )
                         ],
@@ -800,9 +788,7 @@ class _MyPageState extends State<MyPage> {
                             padding: EdgeInsets.only(top: 8),
                             child: Text(
                               '我的社区',
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  color: textColor),
+                              style: TextStyle(fontSize: 12, color: textColor),
                             ),
                           )
                         ],
@@ -821,9 +807,7 @@ class _MyPageState extends State<MyPage> {
                             padding: EdgeInsets.only(top: 8),
                             child: Text(
                               '离线讲解',
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  color: textColor),
+                              style: TextStyle(fontSize: 12, color: textColor),
                             ),
                           )
                         ],
@@ -842,9 +826,7 @@ class _MyPageState extends State<MyPage> {
                             padding: EdgeInsets.only(top: 8),
                             child: Text(
                               '用户调研',
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  color: textColor),
+                              style: TextStyle(fontSize: 12, color: textColor),
                             ),
                           )
                         ],
@@ -863,9 +845,7 @@ class _MyPageState extends State<MyPage> {
                             padding: EdgeInsets.only(top: 8),
                             child: Text(
                               '更多',
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  color: textColor),
+                              style: TextStyle(fontSize: 12, color: textColor),
                             ),
                           )
                         ],
@@ -919,5 +899,11 @@ class _MyPageState extends State<MyPage> {
             ],
           ),
         ));
+  }
+
+  Widget _todo() {
+    return Container(
+      height: 100,
+    );
   }
 }

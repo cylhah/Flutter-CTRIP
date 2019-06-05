@@ -1,5 +1,7 @@
 package com.example.asr;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,6 +25,7 @@ public class RecogResult {
         RecogResult result = new RecogResult();
         result.setOrigalJson(jsonStr);
         try {
+            Log.i("RecogResult:jsonjs", jsonStr);
             JSONObject json = new JSONObject(jsonStr);
             int error = json.optInt("error");
             int subError = json.optInt("sub_error");
@@ -45,6 +48,7 @@ public class RecogResult {
 
             }
         } catch (JSONException e) {
+            Log.e("RecogResult:", "JSON error");
             e.printStackTrace();
         }
 

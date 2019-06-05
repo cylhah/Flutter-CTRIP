@@ -3,13 +3,9 @@ package com.example.demo.scanview;
 import android.content.Context;
 import android.graphics.ImageFormat;
 import android.hardware.Camera;
-import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.TextView;
-
-import com.example.demo.R;
 
 import java.io.IOException;
 import java.util.Map;
@@ -18,17 +14,11 @@ import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.platform.PlatformView;
 
 public class ScanView implements PlatformView {
-    TextView myNativeView;
-    private View cameraView;
     private SurfaceView mSurfaceView;
     private SurfaceHolder mHolder;
     private Camera camera;
 
     ScanView(Context context, BinaryMessenger messenger, int id, Map<String, Object> params) {
-//        TextView myNativeView = new TextView(context);
-//        myNativeView.setText("我是来自Android的原生TextView");
-//        this.myNativeView = myNativeView;
-//        cameraView = LayoutInflater.from(context).inflate(R.layout.camera_view, null);
         mSurfaceView = new SurfaceView(context);
         mHolder = mSurfaceView.getHolder();
         mHolder.addCallback(new SurfaceHolder.Callback() {
@@ -74,6 +64,7 @@ public class ScanView implements PlatformView {
 //        mCamera.setParameters(parameters);
         //开启预览
         camera.startPreview();
+        camera.setDisplayOrientation(90);
     }
 
     @Override

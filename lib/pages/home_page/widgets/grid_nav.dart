@@ -41,6 +41,7 @@ class GridNav extends StatelessWidget {
 
   Widget _gridNavItem(BuildContext context, List<_GridNavModel> itemList,
       List<Color> gradient) {
+    const itemHeight = 66.0;
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: gradient),
@@ -58,7 +59,7 @@ class GridNav extends StatelessWidget {
                     end: BorderSide(color: Colors.white),
                     bottom: BorderSide(color: Colors.white)),
               ),
-              height: 56,
+              height: itemHeight,
               alignment: Alignment.centerLeft,
               padding: EdgeInsets.symmetric(horizontal: 5),
               child: Text(
@@ -74,7 +75,7 @@ class GridNav extends StatelessWidget {
                   border: BorderDirectional(
                       end: BorderSide(color: Colors.white),
                       bottom: BorderSide(color: Colors.white))),
-              height: 56,
+              height: itemHeight,
               alignment: Alignment.center,
               padding: EdgeInsets.symmetric(horizontal: 5),
               child: Text(
@@ -90,7 +91,7 @@ class GridNav extends StatelessWidget {
                   border: BorderDirectional(
                       end: BorderSide(color: Colors.white),
                       bottom: BorderSide(color: Colors.white))),
-              height: 56,
+              height: itemHeight,
               alignment: Alignment.center,
               padding: EdgeInsets.symmetric(horizontal: 5),
               child: Text(
@@ -105,7 +106,7 @@ class GridNav extends StatelessWidget {
               decoration: BoxDecoration(
                   border: BorderDirectional(
                       bottom: BorderSide(color: Colors.white))),
-              height: 56,
+              height: itemHeight,
               alignment: Alignment.center,
               padding: EdgeInsets.symmetric(horizontal: 5),
               child: Text(

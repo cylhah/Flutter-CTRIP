@@ -47,7 +47,7 @@ class _SpeakPageState extends State<SpeakPage> with TickerProviderStateMixin {
             _speakTitle = '你好像并没有说话';
           });
         } else {
-          // Navigator.pop(context);
+          Navigator.pop(context);
           setState(() {
             _speakTitle = '你可以这样说';
           });
