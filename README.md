@@ -13,6 +13,7 @@
 ## 下载
 
 微信扫一扫
+
 ![Flutter_Trip](https://raw.githubusercontent.com/cylhah/Flutter-CTRIP/master/preview/QRcode.png)
 
 ## APP效果图
