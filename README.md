@@ -1,6 +1,6 @@
 # Flutter_CTRIP
 
-学习了Flutter之后，自己尝试着做了一个携程小demo，大家一起参考学习，我的目录写的还是挺清晰的，想看什么功能直接去找就可以了，喜欢的小伙伴记得star哦
+[这是一个仿携程APP](https://coding.imooc.com/class/321.html),学习了Flutter之后，自己尝试着做了一个携程小demo，大家一起参考学习，我的目录写的还是挺清晰的，想看什么功能直接去找就可以了，喜欢的小伙伴记得star哦
 
 ## 目录
 
@@ -9,11 +9,11 @@
 - [功能与特性](#功能与特性)
 - [插件使用](#插件使用)
 - [运行调试](#运行调试)
-- [ToDo](#ToDo)
 
 ## 下载
 
-![Flutter_Trip](<https://raw.githubusercontent.com/wkl007/flutter_trip/master/screenshot/flutter_trip_two_code.png>)
+微信扫一扫
+![Flutter_Trip](https://raw.githubusercontent.com/cylhah/Flutter-CTRIP/master/preview/QRcode.png)
 
 ## APP效果图
 
@@ -21,13 +21,14 @@
 
 ## 功能与特性
 
-- 实现首页、搜索、语音搜索、旅拍、我的5个页面；
+- 实现首页、搜索、语音搜索、旅拍、我的等页面；
 - 实现数据接口封装以及数据模型model创建；
 - 首页实现ClipPath剪裁、导航条与状态栏控制；
 - 搜索界面实现携程接口调用、关键词高亮显示；
 - 语音搜索界面实现百度语音sdk集成、实现flutter与native通信、简单波纹动画实现；
 - 旅拍界面实现瀑布流布局、并使用本地图片站位,实现下拉刷新和上拉加载更多；
 - 我的界面使用shared_preferences实现简单用户信息存储；
+- 相机界面加载native的surfaceview，实现简单的混合开发；
 
 ## 插件使用
 
@@ -44,11 +45,3 @@
 2. Clone [flutter_trip](https://github.com/wkl007/flutter_trip.git) ,然后终端进入项目根目录。
 3. 终端运行 `flutter packages get`。
 4. 然后运行 `flutter run`。
-
-## ToDo
-
-1. 实现城市选择相关页面
-2. 添加定位功能。
-3. 用 [dio](https://pub.flutter-io.cn/packages/dio) 替换 [http](https://pub.flutter-io.cn/packages/http) 库
-4. 用官方 [webview_flutter](https://pub.flutter-io.cn/packages/webview_flutter) 插件替换 [flutter_webview_plugin](https://pub.flutter-io.cn/packages/flutter_webview_plugin)
-
