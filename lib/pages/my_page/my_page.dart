@@ -1,6 +1,7 @@
 import 'package:demo/model/user_model.dart';
 import 'package:demo/pages/my_page/widgets/arc_clipper.dart';
 import 'package:demo/pages/scan_page/scan_page.dart';
+import 'package:demo/widgets/my_webview.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
@@ -85,34 +86,43 @@ class _MyPageState extends State<MyPage> {
               context: context,
               removeTop: true,
               child: NotificationListener(
-                onNotification: (notification) {
-                  if (notification is ScrollUpdateNotification &&
-                      notification.depth == 0) {
-                    _onScroll(notification.metrics.pixels);
-                  }
-                },
-                child: ListView(
-                  children: <Widget>[
-                    _myInfo(),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: _realNameAuthentication(),
+                  onNotification: (notification) {
+                    if (notification is ScrollUpdateNotification &&
+                        notification.depth == 0) {
+                      _onScroll(notification.metrics.pixels);
+                    }
+                  },
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (BuildContext context) {
+                        return MyWebview(
+                            url: 'https://m.ctrip.com/webapp/myctrip/',
+                            title: '个人中心');
+                      }));
+                    },
+                    child: ListView(
+                      children: <Widget>[
+                        _myInfo(),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: _realNameAuthentication(),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: _myWallet(),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: _cards(),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: _todo(),
+                        ),
+                      ],
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: _myWallet(),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: _cards(),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: _todo(),
-                    ),
-                  ],
-                ),
-              ),
+                  )),
             ),
             _banner()
           ],

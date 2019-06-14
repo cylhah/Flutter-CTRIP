@@ -1,12 +1,24 @@
+import 'package:demo/widgets/my_webview.dart';
 import 'package:flutter/material.dart';
 
 class BarginPrice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(8),
-      child: Column(
-        children: <Widget>[_titleBar(), _middle(), _bottom()],
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (BuildContext context) {
+          return MyWebview(
+              url:
+                  'https://m.ctrip.com/webapp/you/livestream/plan/crhHotelList.html?liveAwaken=true&isHideHeader=true&isHideNavBar=YES&mktcrhcode=hotevent',
+              title: '活动');
+        }));
+      },
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: Column(
+          children: <Widget>[_titleBar(), _middle(), _bottom()],
+        ),
       ),
     );
   }
