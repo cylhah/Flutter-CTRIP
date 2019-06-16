@@ -12,7 +12,7 @@
 
 ## 下载
 
-微信扫一扫
+微信扫一扫(android)
 
 ![Flutter_Trip](https://raw.githubusercontent.com/cylhah/Flutter-CTRIP/master/preview/QRcode.png)
 
