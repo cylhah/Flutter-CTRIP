@@ -43,6 +43,6 @@
 ## 运行调试
 
 1. 准备Flutter环境,可参考: [getting-started](<https://flutter-io.cn/docs/get-started/install>)。
-2. Clone [flutter_trip](https://github.com/wkl007/flutter_trip.git) ,然后终端进入项目根目录。
+2. Clone [Flutter_CTRIP](https://github.com/cylhah/Flutter-CTRIP) ,然后终端进入项目根目录。
 3. 终端运行 `flutter packages get`。
 4. 然后运行 `flutter run`。
